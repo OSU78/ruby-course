@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>NINTENDO SWITCH INTERFACE IN HTML/CSS</title>
+		<!--LINK CSS-->
+		<%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track': 'reload' %>
+	</head>
+	<body>
+
+ 
+		<!--Header-->
+		<header>
+			<div class="profil_pic bg_size picSize"></div>
+			<div class="header_div2 flex_row">
+				<section class="time flex_row">
+					<p>3:38</p>
+					<p>PM</p>
+				</section class="flex_row">
+				<section class="wifi_ico picSize"></section>
+				<section class="bat_ico picSize"></section>
+			</div>
+		</header>
+		<!--Main-->
+		<main>
+			<div>
+        <div class="flex row center">
+          <% @games.each_with_index do |game, index| %>
+            <section style="position: relative;">
+              <section class="game <%= game_background_class(index) %>" style="background: url('<%= game.banner %>')"></section>
+              <span><%= game.name %></span>
+            </section>
+          <% end %>
+        </div>
+
+			</div>
+			<div>
+				<section class="circle bg_size">
+					<div class="msg_ico picSize"></div>
+				</section>
+				<section class="circle bg_size">
+					<div class="shop_ico picSize"></div>
+				</section>
+				<section class="circle bg_size">
+					<div class="image_ico picSize"></div>
+				</section>
+				<section class="circle bg_size">
+					<div class="joycon_ico picSize"></div>
+				</section>
+				<section class="circle bg_size">
+					<div class="setting_ico picSize"></div>
+				</section>
+				<section class="circle bg_size">
+					<div class="shutdow_ico picSize"></div>
+				</section>
+			</div>
+
+<style>
+  .modal {
+    display: none; 
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  transition: opacity 0.23s ease-in;
+}
+.modal.show {
+  display: flex;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  transform: translateY(-100px);
+
+  transition: transform 0.23s ease-in, opacity 0.23s ease-in;
+}
+
+.modal-content h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 16px;
+}
+
+.field input[type="text"],
+.field input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.field input[type="text"]:focus,
+.field input[type="number"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.button.submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.button.submit-button:hover {
+  background-color: #0056b3;
+}
+
+#error_explanation {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+#error_explanation h2 {
+  font-size: 20px;
+}
+
+#error_explanation ul {
+  list-style: none;
+  padding: 0;
+}
+
+#error_explanation ul li {
+  font-size: 14px;
+}
+.button.close-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px; /* Add some space between the submit and close buttons */
+  transition: background-color 0.3s;
+}
+
+.button.close-button:hover {
+  background-color: #bd2130;
+}
+
+  </style>
+      <div id="gameFormModal" class="modal">
+  <!-- The actual form goes here -->
+  <div class="modal-content">
+    <!-- app/views/games/_form.html.erb -->
+    <%= raise 'Variable game est null!' if @game.nil? %>
+    <%= form_with(model: @game, local: true) do |form| %>
+      <% if @game.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+          <ul>
+          <% @game.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name, id: :game_name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :banner %>
+        <%= form.text_field :banner, id: :game_banner %>
+      </div>
+
+      <div class="field">
+        <%= form.label :price %>
+        <%= form.number_field :price, id: :game_price %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit 'Ajouter', class: 'button submit-button' %>
+        <!-- Add a button or link for the close action -->
+        <button type="button" class="button close-button" onclick="closeModal()">Close</button>
+      </div>
+      
+    <% end %>
+  </div>
+</div>
+
+
+		</main>
+
+		<!--Footer-->
+    <div class="flex_row"><hr class="custom_Hr"></div>
+		
+		<footer>
+
+			<div class="switch_ico bg_size"></div>
+			<div class="flex_row">
+				<section class="flex_row gap5">
+					<div class="option_ico bg_size"></div>
+					<div>
+						<p>Options</p>
+					</div>
+				</section>
+
+        <section class="flex_row gap5 btn" id="add-game-button">
+					<div class="option_ico bg_size"></div>
+					<div>
+						<p>Add Game</p>
+					</div>
+				</section>
+
+				<section class="flex_row gap5">
+					<div class="btn_ico"></div>
+					<div>
+						<p>Start</p>
+					</div>
+				</section>
+			</div>
+		</footer>
+		<script src="js/sc.js"></script>
+    <script>
+
+
+function closeModal() {
+  var modal = document.getElementById('gameFormModal');
+  var modalContent = modal.querySelector('.modal-content');
+
+  // Animate the modal content scale down and reduce opacity
+  modalContent.animate([
+    { opacity: 1, transform: 'scale(1)' },
+    { opacity: 0, transform: 'scale(0.8)' }
+  ], {
+    duration: 230,
+    easing: 'ease-in',
+    fill: 'forwards'
+  });
+
+  // Animate the backdrop shadow fade out
+  var backdropAnimation = modal.animate([
+    { opacity: 1 },
+    { opacity: 0 }
+  ], {
+    duration: 230,
+    fill: 'forwards'
+  });
+
+  // After the backdrop animation is finished, hide the modal
+  backdropAnimation.onfinish = function() {
+    modal.style.display = 'none';
+  };
+}
+
+ document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('add-game-button').addEventListener('click', function() {
+    var modal = document.getElementById('gameFormModal');
+    var modalContent = modal.querySelector('.modal-content');
+    
+    // Display the modal
+    modal.style.display = 'flex'; 
+
+    // Animate the backdrop shadow with opacity
+    modal.animate([
+      { opacity: 0 },
+      { opacity: 1 }
+    ], {
+      duration: 280,
+      fill: 'forwards'
+    });
+
+    modalContent.animate([
+      { opacity: 0, transform: 'scale(0.8)' },
+      { opacity: 1, transform: 'scale(1.05)' },
+      { opacity: 1, transform: 'scale(0.95)' },
+      { opacity: 1, transform: 'scale(1)' }
+    ], {
+      duration: 500, // Duration is slightly longer to accommodate the bounce
+      easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)', // Cubic bezier for bounce
+      fill: 'forwards'
+    });
+  });
+});
+
+    </script>
+	</body>
+</html>

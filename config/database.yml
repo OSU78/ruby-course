@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: roundhouse.proxy.rlwy.net
+  port: 48415
+  database: railway
+  username: postgres
+  password: -5DAc6ce661Bf*d-62a2FgdE2-2E-B45
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

@@ -22,6 +22,9 @@ services:
       - net-api
 
   ruby-api:
+    environment: 
+      - DATABASE_URL=postgresql://postgres:-5DAc6ce661Bf*d-62a2FgdE2-2E-B45@roundhouse.proxy.rlwy.net:48415/railway
+
     build: 
       context: .
       dockerfile: api/Dockerfile

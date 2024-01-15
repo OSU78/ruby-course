@@ -1,0 +1,400 @@
+ /* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+@font-face {
+    font-family: "couture";
+    src: url("../ressources/font/couture.ttf");
+}
+@font-face {
+    font-family: "couture-bold";
+    src: url("../ressources/font/couture-bld.otf");
+}
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Reset perso */
+a, del, ins {
+	text-decoration: none;
+}
+a {
+	color: inherit;
+}
+label, button {
+	cursor: pointer;
+}
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+input, textarea, button {
+	outline: 0;
+}
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "couture";
+}
+
+h1 {
+    font-family: 'couture-bold';
+}
+
+p {
+    font-family: "couture";
+	transition: .2s;
+}
+p:hover{
+	cursor: pointer;
+	transition: .2s;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+  border-radius: 100px ;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	transition: .3s;
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(216, 216, 216, 0.418);
+  transition: .2s;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(98, 187, 199, 0.356);
+  transition: .3s;
+}
+  :root {
+    --primary-color: #2f2f2f;
+    --secondary-color: #67bbb8;
+    --border-color: rgba(0, 247, 255, 0.623);
+    --span: rgba(7, 206, 212, 0.788);
+    --df_transition: .3s;
+    --df_size: 130px
+}
+
+body {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    background-color: #ebebeb;
+    overflow: hidden;
+    font-familly : sans-serif
+}
+
+
+header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 35px;
+    margin-top: 20px;
+
+}
+
+main {
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-around;
+    overflow: hidden;
+}
+
+
+
+main>div:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+
+}
+
+main>div:nth-child(1)>div {
+    height: max-content;
+    padding: 10px;
+    max-width: 1150px;
+    display: flex;
+    flex-direction : row ; 
+    gap : 20px;
+   justify-content : space-evenly;
+    align-items: start;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+main>div:nth-child(1) {
+    display: flex;
+}
+
+
+footer {
+    padding: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 25%;
+}
+
+hr {
+    background: white;
+    width: 90%;
+
+}
+
+p:hover {
+    color: var(--span);
+}
+
+span {
+  margin-top: 178px;
+    top: -50px;
+    position: absolute;
+    color: rgb(50, 50, 50);
+    min-width: 100%;
+    left: 2%;
+    width: -webkit-fill-available;
+    font-size: 15px;
+    text-align: center;
+    visibility: hidden;
+}
+
+
+/****DEBUT****/
+.time>p {
+    font-size: 22px;
+}
+
+.time>p:nth-child(2) {
+    font-size: 10px;
+}
+
+.flex_row {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+
+}
+
+.flex_column {
+    display: flex;
+    flex-flow: column;
+}
+
+.gap5 {
+    gap: 5px;
+}
+
+
+
+
+
+.game {
+    cursor: pointer;
+    border-radius: 7px;
+    border: 1px solid transparent;
+    transition: var(--df_transition);
+
+}
+
+.game:hover {
+ 
+    transition: var(--df_transition);
+    border-radius: 7px;
+    border: 6px solid var(--border-color);
+    outline: 2px solid var(--span);
+    box-shadow: 2px 1px 10px var(--border-color);
+}
+.game:hover::after{
+  background: linear-gradient(to bottom, rgba(0,0,0,0.0) 40% , rgba(0, 0, 0, 0.547) 95%);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  border-radius: 7px;
+  z-index: 1;
+}
+
+.game:hover+span {
+    visibility: visible;
+    transition: var(--df_transition);
+    animation: appear var(--df_transition);
+    animation-fill-mode: both;
+}
+
+.bg_size {
+    background-size: contain;
+    background-repeat: no-repeat !important;
+}
+
+.profil_pic {
+    cursor: pointer;
+    background-image: url(./../ressources/images/profl_pic.png);
+    border-radius: 100%;
+    outline: 4px solid white;
+    box-shadow: 2px 1px 10px var(--border-color);
+    transition:var(--df_transition);
+}
+.profil_pic:hover{
+    outline: 4px solid var(--border-color);
+    transition: var(--df_transition);
+}
+
+
+.picSize {
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.circle {
+    padding: 5px;
+    transition: var(--df_transition);
+    border-radius: 100%;
+    background: white;
+    border: 4px solid white
+}
+
+.circle:hover {
+    border: 4px solid var(--secondary-color);
+    transition: var(--df_transition);
+    box-shadow: 2px 1px 10px var(--border-color);
+}
+
+/**IMG**/
+.wifi_ico {
+    width: 30px;
+    height: 30px;
+    background: url("./../ressources/images/icoWifi.png");
+}
+
+.bat_ico {
+    width: 40px;
+    height: 40px;
+    background-image: url("./../ressources/images/icoBatterie.png");
+}
+
+.msg_ico {
+
+    background-image: url("./../ressources/images/icoMsg.png");
+}
+
+.shop_ico {
+    background-image: url("./../ressources/images/icoPanier.png");
+}
+
+.image_ico {
+    background-image: url("./../ressources/images/icoLike.png");
+}
+
+.joycon_ico {
+    background-image: url("./../ressources/images/icoSwitch.png");
+}
+
+.setting_ico {
+    background-image: url("./../ressources/images/icoSun.png");
+}
+
+.shutdow_ico {
+    background-image: url("./../ressources/images/icoOff.png");
+}
+
+.switch_ico {
+    height: 30px;
+    width: 100px;
+    background-image: url("./../ressources/images/icoSwitch2.png");
+}
+
+.option_ico {
+    height: 30px;
+    width: 30px;
+    background-image: url("./../ressources/images/ico-button-A.png");
+
+}
+
+/**GAME SECTION CSS**/
+.game {
+  
+    margin-left: 5px;
+    margin-right: 5px;
+    width: var(--df_size);
+    height: 180px;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-image: url("./../ressources/images/g1.jpg");
+    border : 1px solid rgba(0,0,0,0.1);
+}
+
+/***ANIMATION KEYFRAMES***/
+@keyframes appear {
+    from {
+        top: 30px;
+        opacity: 0;
+    }
+
+    to {
+        top: 10px;
+        opacity: 1;
+    }
+
+}
