@@ -34,3 +34,19 @@
 docker-compose.yml
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!docker-compose.yml
+!Dockerfile
+!Gemfile
+!README.md
+!.dockerignore
+
+# ...nor these directories
+!/app
+!/config
+!/api
