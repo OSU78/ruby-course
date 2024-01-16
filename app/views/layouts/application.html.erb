@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dev</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>NINTENDO SWITCH INTERFACE IN HTML/CSS</title>
+		<!--LINK CSS-->
+		<%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'script' %>
+
+
+
   </head>
 
   <body>
+  <!--Header-->
+  <header>
+    <a href="https://www.youtube.com/@Vicode1/videos" alt="Ma chaine youtube"><div class="profil_pic bg_size picSize"></div></a>
+    <div class="header_div2 flex_row">
+      <section class="time flex_row">
+      <p id="hours">3:38</p>
+      <p id="period">PM</p>
+      </section class="flex_row">
+      <section class="wifi_ico picSize"></section>
+      <section class="bat_ico picSize"></section>
+    </div>
+  </header>
     <%= yield %>
   </body>
 </html>

@@ -176,7 +176,7 @@ main>div:nth-child(2) {
     justify-content: center;
     align-items: self-start;
     gap: 15px;
-    margin-top: 20vh;
+    margin-top: 10vh;
     
 
 }
@@ -799,5 +799,13 @@ width : max-content;
     top: -33px !important;
     opacity: 1 !important;
     animation: appear var(--df_transition);
+    transition: all 0.2s cubic-bezier(1, -0.03, 0.58, 1) !important;
+}
+
+.grayscale{
+    transition: all 0.2s cubic-bezier(1, -0.03, 0.58, 1) !important;
+}
+.grayscale:hover{
+    background : transparent !important;
     transition: all 0.2s cubic-bezier(1, -0.03, 0.58, 1) !important;
 }
