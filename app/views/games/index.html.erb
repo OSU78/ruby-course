@@ -16,8 +16,8 @@
 			<div class="profil_pic bg_size picSize"></div>
 			<div class="header_div2 flex_row">
 				<section class="time flex_row">
-					<p>3:38</p>
-					<p>PM</p>
+        <p id="hours">3:38</p>
+        <p id="period">PM</p>
 				</section class="flex_row">
 				<section class="wifi_ico picSize"></section>
 				<section class="bat_ico picSize"></section>
@@ -26,155 +26,32 @@
 		<!--Main-->
 		<main>
 			<div>
-        <div class="flex row center">
+        <div class="grid-layout">
           <% @games.each_with_index do |game, index| %>
-            <section style="position: relative;">
+            <div class="grayscale" >
+            <a href="/games/<%= game.id %>" style="position: relative;">
               <section class="game <%= game_background_class(index) %>" style="background: url('<%= game.banner %>')"></section>
               <span><%= game.name %></span>
-            </section>
+              <span class="username_tag" ><%= game.username %></span>
+            </a>
+            </div>
           <% end %>
         </div>
 
 			</div>
 			<div>
-				<section class="circle bg_size">
-					<div class="msg_ico picSize"></div>
+			
+			
+				<section class="circle bg_size add_game" id="add-game-button">
+					<div class="image_ico picSize">
+          <p>Ajouter un jeu</p>
+          </div>
+         
 				</section>
-				<section class="circle bg_size">
-					<div class="shop_ico picSize"></div>
-				</section>
-				<section class="circle bg_size">
-					<div class="image_ico picSize"></div>
-				</section>
-				<section class="circle bg_size">
-					<div class="joycon_ico picSize"></div>
-				</section>
-				<section class="circle bg_size">
-					<div class="setting_ico picSize"></div>
-				</section>
-				<section class="circle bg_size">
-					<div class="shutdow_ico picSize"></div>
-				</section>
+				
+		
 			</div>
 
-<style>
-  .modal {
-    display: none; 
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  transition: opacity 0.23s ease-in;
-}
-.modal.show {
-  display: flex;
-  opacity: 0;
-  transform: scale(0.8);
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 400px;
-  transform: translateY(-100px);
-
-  transition: transform 0.23s ease-in, opacity 0.23s ease-in;
-}
-
-.modal-content h2 {
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.field {
-  margin-bottom: 20px;
-}
-
-.field label {
-  display: block;
-  margin-bottom: 5px;
-  color: #333;
-  font-size: 16px;
-}
-
-.field input[type="text"],
-.field input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  box-sizing: border-box;
-  transition: border-color 0.3s;
-}
-
-.field input[type="text"]:focus,
-.field input[type="number"]:focus {
-  outline: none;
-  border-color: #007bff;
-}
-
-.button.submit-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
-
-.button.submit-button:hover {
-  background-color: #0056b3;
-}
-
-#error_explanation {
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  color: #721c24;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
-
-#error_explanation h2 {
-  font-size: 20px;
-}
-
-#error_explanation ul {
-  list-style: none;
-  padding: 0;
-}
-
-#error_explanation ul li {
-  font-size: 14px;
-}
-.button.close-button {
-  background-color: #dc3545;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-left: 10px; /* Add some space between the submit and close buttons */
-  transition: background-color 0.3s;
-}
-
-.button.close-button:hover {
-  background-color: #bd2130;
-}
-
-  </style>
       <div id="gameFormModal" class="modal">
   <!-- The actual form goes here -->
   <div class="modal-content">
@@ -194,24 +71,30 @@
       <% end %>
 
       <div class="field">
-        <%= form.label :name %>
-        <%= form.text_field :name, id: :game_name %>
+        <%= form.label :"Nom du jeu que tu souhaite avoir en cadeaux " , class: "graycolor" %>
+        <%= form.text_field :name, id: :game_name ,placeholder: "Exemple : mario kart , pes.."  %>
       </div>
 
       <div class="field">
-        <%= form.label :banner %>
-        <%= form.text_field :banner, id: :game_banner %>
+      <%= form.label :username, "Ton prénom", class: "graycolor" %>
+      <%= form.text_field :username, id: :game_username, placeholder: "Permet à tes amis de te retrouvé.." %>
+    </div>
+    
+
+      <div class="field">
+        <%= form.label :"L'url du poster du jeu " , class: "graycolor" %>
+        <%= form.text_field :banner, id: :game_banner ,placeholder: "https://img_exemple.png" %>
       </div>
 
       <div class="field">
-        <%= form.label :price %>
+        <%= form.label :"Prix du jeu " , class: "graycolor" %>
         <%= form.number_field :price, id: :game_price %>
       </div>
 
       <div class="actions">
         <%= form.submit 'Ajouter', class: 'button submit-button' %>
         <!-- Add a button or link for the close action -->
-        <button type="button" class="button close-button" onclick="closeModal()">Close</button>
+        <button type="button" class="button close-button" onclick="closeModal()">Annuler</button>
       </div>
       
     <% end %>
@@ -235,10 +118,10 @@
 					</div>
 				</section>
 
-        <section class="flex_row gap5 btn" id="add-game-button">
+        <section class="flex_row gap5 btn" >
 					<div class="option_ico bg_size"></div>
 					<div>
-						<p>Add Game</p>
+						<p>Ajouter un jeu</p>
 					</div>
 				</section>
 
@@ -251,10 +134,162 @@
 			</div>
 		</footer>
 		<script src="js/sc.js"></script>
+
+
+
+<script>
+function validateImageUrl(url) {
+  // Regular expression to match image URLs that start with https and end with .png, .jpeg, .webp, or .gif
+  var pattern = /^https:\/\/.*\.(png|jpeg|jpg|webp|gif)$/i;
+  return pattern.test(url);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  var form = document.getElementById("gameFormModal");
+
+  form.addEventListener("submit", function(event) {
+    // Fetch form field values
+    var name = document.getElementById("game_name").value.trim();
+    var banner = document.getElementById("game_banner").value.trim();
+    var price = document.getElementById("game_price").value.trim();
+    var isValid = true;
+    var errorMessage = "";
+
+    // Check if the name has at least 3 characters
+    if (name.length < 3) {
+      isValid = false;
+      errorMessage += "Le champ nom doit contenir au moins 3 caractères. ";
+    }
+
+    // Validate image URL
+    if (!validateImageUrl(banner)) {
+      isValid = false;
+      errorMessage += " L'URL de la bannière doit être une URL d'image valide (https)";
+    }
+
+    // Check if the price is provided
+    if (!price) {
+      isValid = false;
+      errorMessage += "Le champ prix est obligatoire , mais pour un jeu gratuit mettez 0. ";
+    }
+
+    // If any validations fail, prevent form submission and show error message
+    if (!isValid) {
+      event.preventDefault();
+      var errorDiv = document.getElementById("error_message");
+      if (!errorDiv) {
+        errorDiv = document.createElement("div");
+        errorDiv.id = "error_message";
+        console.log(form.children)
+        console.log(form.children[0])
+        form.children[0].appendChild(errorDiv);
+      }
+      errorDiv.textContent = errorMessage;
+      errorDiv.className = "apple-style-error";
+    }
+  });
+});
+
+</script>
+
+
+    <script>
+    //FUNCTION CARD ANIMATION 
+
+function parallax(carte,perpective=255,style2=false){carte.forEach(el =>{
+  el.addEventListener("mousemove", e =>{
+
+      let elrect = el.getBoundingClientRect()
+
+      let x = e.clientX - elrect.x
+      let y = e.clientY - elrect.y
+
+      let midcardwidth = elrect.width / 2
+      let midcardheight = elrect.height / 2
+      let angleY = -(x - midcardwidth) / 8
+      let angleX = (y - midcardheight) / 8.5
+
+      let glowX = x / elrect.width * 100
+      let glowY = y / elrect.height * 100
+
+      if(style2==true){
+      if (angleX < -30) angleX = -15
+      if (angleY < -10) angleY = -6
+      }
+      el.style.transition = "all 0.1s "
+      el.style.transform =  `perspective(${perpective}px)  rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+
+
+
+  })
+  el.addEventListener("mouseleave",()=>{
+
+
+      el.style.transition = "all 0.3s "
+      el.style.transform = "rotateX(0) rotateY(0) "
+  })
+  // el.addEventListener("mouseleave",()=>{
+
+  //     el.children[1].style.opacity=0.2
+  //     el.children[0].style.opacity = 1
+  //     el.style.transition = all 0.5s 
+  //     el.style.transform = rotateX(0) rotateY(0) 
+  // })
+  // el.addEventListener("mouseover",()=>{
+  //   el.style.transition = all 1s 
+  //   el.style.background=none
+  //   el.children[0].style.opacity = 1
+  // })
+  console.log("ok")
+
+})}
+
+window.addEventListener("load",()=>{
+  let cartes = document.querySelectorAll('.game');
+  parallax(cartes,perpective=834);
+
+
+
+}
+)
+    
+    </script>
     <script>
 
 
+
+
+    function updateTime() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes();
+    const period = hours >= 12 ? 'PM' : 'AM';
+
+    // Convert to 12-hour format
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+
+    // Format the time string
+    const timeStr = `${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+
+    // Update the HTML
+    document.getElementById('hours').textContent = timeStr;
+    document.getElementById('period').textContent = period;
+}
+
+
+setInterval(updateTime, 60000);
+updateTime();
+
+
+
+
+
 function closeModal() {
+  if (document.getElementById("error_message")){
+    setTimeout(function(){document.getElementById("error_message").remove()},600)
+
+  }
   var modal = document.getElementById('gameFormModal');
   var modalContent = modal.querySelector('.modal-content');
 
@@ -296,7 +331,7 @@ function closeModal() {
       { opacity: 0 },
       { opacity: 1 }
     ], {
-      duration: 280,
+      duration: 180,
       fill: 'forwards'
     });
 

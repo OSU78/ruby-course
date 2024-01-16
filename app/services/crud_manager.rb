@@ -24,11 +24,13 @@ class CrudManager
     @model.create(params)
   end
 
-  def update(params)
-    # Logique pour mettre à jour un enregistrement existant dans la base de données avec les paramètres fournis
-    @model.update(params)
-  end
 
+  def update(id, params)
+    # Logique pour mettre à jour un enregistrement existant dans la base de données avec les paramètres fournis
+    object = @model.find(id)
+    object.update(params)
+  end
+  
   
   def destroy(id)
     # Logique pour supprimer un enregistrement de la base de données en utilisant l'ID fourni

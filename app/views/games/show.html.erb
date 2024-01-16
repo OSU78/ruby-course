@@ -1,13 +1,21 @@
 <!-- app/views/games/show.html.erb -->
 <div class="game-card">
-  <img src="<%= @game.banner %>" alt="Game banner" class="game-banner"/>
-  <div class="game-info">
-    <h1><%= @game.name %></h1>
-    <p><%= number_to_currency(@game.price) %></p>
-    
-      </div>
+    <div>
+        <img src="<%= @game.banner %>" alt="Game banner" class="game-banner" />
     </div>
-    <div class="game-actions">
-      <%= link_to 'Edit', edit_game_path(@game), class: 'button edit-button' %>
-      <%= link_to 'Back to List', games_path, class: 'button' %>
+
+    <div class="game-info">
+    <div class="game-info-p flex row center gap10"> <p class="game-info-p-username"> <%= (@game.username) %></p> <p>aimerais avoir ce jeu en cadeaux</p> </div>
+        <h1><%= @game.name %></h1>
+        <p class="game-info-p"> Prix : <%= number_to_currency(@game.price) %></p>
+        
     </div>
+</div>
+
+
+<div class="flex row center">
+<div class="game-actions">
+    <%= link_to 'Edit', edit_game_path(@game), class: 'button edit-button' %>
+    <%= link_to '- Retourner à la liste des souhaits', games_path, class: 'button' %>
+</div>
+</div>

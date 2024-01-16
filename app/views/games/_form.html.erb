@@ -1,4 +1,5 @@
 <!-- app/views/games/_form.html.erb -->
+
 <%= raise 'Variable game est null!' if game.nil? %>
 <%= form_with(model: game, local: true) do |form| %>
   <% if game.errors.any? %>
@@ -14,17 +15,24 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :'Nom du jeu' %>
     <%= form.text_field :name, id: :game_name %>
   </div>
 
   <div class="field">
-    <%= form.label :banner %>
+      <%= form.label :username, "Ton prénom", class: "graycolor" %>
+      <%= form.text_field :username, id: :game_username, placeholder: "Permet à tes amis de te retrouvé.." %>
+  </div>
+    
+
+
+  <div class="field">
+    <%= form.label :"L'url du poster du jeu" %>
     <%= form.text_field :banner, id: :game_banner %>
   </div>
 
   <div class="field">
-  <%= form.label :price %>
+  <%= form.label :"Prix du jeux" %>
   <%= form.number_field :price, id: :game_price %>
   
     </div>

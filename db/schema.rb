@@ -18,6 +18,14 @@ ActiveRecord::Schema[7.1].define(version: 0) do
     t.text "name"
     t.text "banner"
     t.integer "price"
+    t.text "username"
+  end
+
+  create_table "games_cours", id: :serial, force: :cascade do |t|
+    t.text "name"
+    t.text "banner"
+    t.integer "price"
+    t.text "username"
   end
 
 end

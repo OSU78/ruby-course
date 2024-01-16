@@ -36,7 +36,7 @@ docker-compose.yml
 /config/master.key
 
 # Ignore everything
-*
+
 
 # But not these files...
 !.gitignore
@@ -47,6 +47,3 @@ docker-compose.yml
 !.dockerignore
 
 # ...nor these directories
-!/app
-!/config
-!/api

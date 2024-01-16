@@ -1,5 +1,5 @@
 # On inclut notre la class CRUD qui gère les opérations lier à notre base de données .
-require_relative '../crud_manager'
+require_relative '../services/crud_manager'
 
 # Définition de la classe GamesController qui hérite d'ApplicationController, 
 # le contrôleur standard de Rails qui permet la gestion des jeux.

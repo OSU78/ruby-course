@@ -1,5 +1,11 @@
 <!-- app/views/games/edit.html.erb -->
-<h1>Edit Game</h1>
+<h1 class="flex row center mgTop50">Edit Game</h1>
 <div class="edit-game-form">
 <%= render 'form', game: @game %>
+</div>
+
+<div class="flex row center mgTop10">
+<div class="game-actions">
+    <a class="button" href="/games">Retourner à la liste des souhaits</a>
+</div>
 </div>
